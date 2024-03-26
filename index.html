@@ -1,0 +1,31 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTMP Stream Player</title>
+    <!-- Include flv.js -->
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@1.6.0/dist/flv.min.js"></script>
+</head>
+<body>
+    <!-- Define a video element with an ID -->
+    <video id="my-video" controls width="640" height="360"></video>
+
+    <script>
+        // Instantiate flv.js player
+        if (flvjs.isSupported()) {
+            var videoElement = document.getElementById('my-video');
+            var flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                url: 'http://192.168.1.55:8000/livestream/stream_key1.flv' // Replace with your RTMP URL
+            });
+            flvPlayer.attachMediaElement(videoElement);
+            flvPlayer.load();
+            flvPlayer.play();
+        } else {
+            console.error('FLV.js not supported');
+        }
+    </script>
+</body>
+</html>
